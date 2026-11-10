@@ -4,7 +4,8 @@ A celebration site for my cousin's 40-day walk around Taiwan (環島), starting 
 He walked the Camino de Santiago last year, so the site is styled as a "pilgrim passport":
 this trip is Vol. II, and the Camino is Vol. I.
 
-## What's built (index.html, single self-contained file)
+## What's built
+Three files: `index.html` (markup), `style.css` (styles), `script.js` (data + all page logic).
 - **Cover (hero):** passport-green, gold-foil type. Stats (day / km walked / km to go / stamps) and an SVG map of Taiwan.
   The route is drawn red where walked and dashed gold where still to come, with a pulsing "NOW" marker.
 - **Stamps:** one card per day. Finished days render as procedurally generated ink stamps
@@ -15,7 +16,7 @@ this trip is Vol. II, and the Camino is Vol. I.
 - Fonts: Bodoni Moda (display), IBM Plex Mono (data), LXGW WenKai TC (Chinese).
 
 ## How data works
-Everything lives in the `CONFIG`, `DAYS` and `CAMINO` objects at the top of the `<script>`.
+Everything lives in the `CONFIG` and `DAYS` objects at the top of `script.js`.
 - `DAYS[i]`: `{ zh, en, lon, lat, done?, km?, note?, reel?, fb?, rest?, finish? }`
 - If `km` is omitted, it's estimated as haversine distance × `CONFIG.roadFactor` (1.25).
 - A day becomes a stamp when `done: true`.

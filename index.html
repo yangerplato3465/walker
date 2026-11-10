@@ -1,127 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Around Taiwan on Foot</title>
+<title>徒步環島四十天</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=IBM+Plex+Mono:wght@400;500&family=LXGW+WenKai+TC:wght@400;700&display=swap" rel="stylesheet">
-<style>
-/* Layout idea: a pilgrim passport. Green "cover" hero with a gold-line map of the island,
-   then paper "visa pages" where every walked day is an inked stamp. Single visual world. */
-:root{
-  --cover:#1d3a31;      /* passport-green cover */
-  --cover-2:#244a3e;
-  --gold:#cdb06a;       /* foil */
-  --paper:#eceee6;      /* inner page, faintly green-grey */
-  --ink:#1c2420;
-  --muted:#66736c;
-  --verm:#cf3b2b;       /* stamp inks */
-  --indigo:#2b4a8f;
-  --teal:#17766a;
-  --plum:#7a3567;
-  --display:"Bodoni Moda", "Didot", Georgia, serif;
-  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --zh:"LXGW WenKai TC", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", serif;
-  color-scheme: light;
-}
-*{box-sizing:border-box}
-html,body{margin:0}
-body{background:var(--paper);color:var(--ink);font-family:var(--mono);font-size:15px;line-height:1.55}
-a{color:inherit}
-a:focus-visible,button:focus-visible{outline:2px solid var(--verm);outline-offset:3px;border-radius:4px}
-[lang="zh-Hant"]{font-family:var(--zh)}
-
-/* ---------- cover ---------- */
-.cover{background:
-  radial-gradient(120% 90% at 85% 10%, var(--cover-2) 0%, transparent 60%),
-  repeating-linear-gradient(135deg, rgba(255,255,255,.018) 0 2px, transparent 2px 6px),
-  var(--cover);
-  color:var(--gold);padding:48px 24px 40px}
-.cover-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:40px;align-items:center}
-.eyebrow{font-size:12px;letter-spacing:.28em;text-transform:uppercase;opacity:.85;display:flex;gap:14px;flex-wrap:wrap}
-.eyebrow span+span::before{content:"·";margin-right:14px}
-h1{font-family:var(--display);font-weight:500;font-size:clamp(44px,7vw,88px);line-height:.95;margin:22px 0 14px;letter-spacing:-.01em;text-wrap:balance;color:#e7d39d}
-h1 em{font-style:italic;font-weight:500}
-.zh-title{font-family:var(--zh);font-size:clamp(24px,3vw,34px);letter-spacing:.35em;margin:0 0 6px}
-.walker{margin:0 0 26px;opacity:.85}
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid rgba(205,176,106,.35);border-bottom:1px solid rgba(205,176,106,.35)}
-.stat{padding:14px 12px 12px 0}
-.stat+.stat{padding-left:14px;border-left:1px solid rgba(205,176,106,.25)}
-.stat b{display:block;font-family:var(--display);font-size:clamp(26px,3.4vw,40px);font-weight:500;color:#f1e3b8;font-variant-numeric:tabular-nums;line-height:1.1}
-.stat small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
-.follow{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid var(--gold);border-radius:999px;text-decoration:none;font-size:13px;letter-spacing:.06em;transition:background .2s,color .2s}
-.btn:hover{background:var(--gold);color:var(--cover)}
-.map-wrap{position:relative}
-#map{width:100%;height:auto;max-height:640px;display:block;margin:0 auto}
-.map-legend{display:flex;gap:18px;justify-content:center;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.85;margin-top:6px;flex-wrap:wrap}
-.map-legend i{display:inline-block;width:22px;height:0;border-top:3px solid var(--verm);vertical-align:middle;margin-right:6px}
-.map-legend i.plan{border-top:2px dashed var(--gold)}
-.dot{cursor:pointer}
-.dot:hover circle{stroke-width:3}
-@media (prefers-reduced-motion:no-preference){
-  .pulse{animation:pulse 2.2s ease-out infinite;transform-box:fill-box;transform-origin:center}
-  @keyframes pulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.6);opacity:0}}
-}
-
-/* ---------- pages ---------- */
-main{max-width:1120px;margin:0 auto;padding:0 24px 64px}
-.page-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;border-bottom:1px solid #cdd3c8;padding:48px 0 14px;margin-bottom:28px}
-h2{font-family:var(--display);font-weight:500;font-size:clamp(28px,4vw,42px);margin:0;line-height:1.05;text-wrap:balance}
-h2 [lang="zh-Hant"]{font-size:.7em;margin-left:12px;color:var(--muted);letter-spacing:.2em}
-.page-head p{margin:0;color:var(--muted);font-size:13px;max-width:46ch}
-
-.visa{
-  background:
-    repeating-radial-gradient(circle at 50% 120%, transparent 0 14px, rgba(23,118,106,.045) 14px 15px),
-    #f4f5ef;
-  border:1px solid #d5dbd0;border-radius:6px;padding:24px;
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:28px 22px}
-.day{display:flex;flex-direction:column;gap:4px;scroll-margin-top:24px}
-.stamp{aspect-ratio:1/1;display:grid;place-items:center;margin-bottom:6px}
-.stamp svg{width:88%;height:auto;overflow:visible}
-.day-meta{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-variant-numeric:tabular-nums}
-.day h3{margin:0;font-weight:500;font-size:16px;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
-.day h3 [lang="zh-Hant"]{font-size:20px}
-.from{margin:0;font-size:12px;color:var(--muted)}
-.note{margin:6px 0 0;font-family:var(--zh);font-size:15px;line-height:1.5}
-.links{display:flex;gap:12px;margin-top:6px;font-size:12px}
-.links a{text-decoration:none;border-bottom:1px solid currentColor;color:var(--verm)}
-.links .soon{color:var(--muted)}
-.links button{font:inherit;background:none;border:0;padding:0;cursor:pointer;border-bottom:1px solid currentColor;color:var(--verm)}
-.links button:focus-visible,.reel-close:focus-visible{outline:2px solid var(--verm);outline-offset:3px}
-
-/* ---------- reel player (pop-up) ---------- */
-.reel-dialog{width:min(560px,calc(100vw - 32px));max-height:calc(100dvh - 32px);padding:0;border:0;border-radius:8px;background:var(--paper);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.35)}
-.reel-dialog::backdrop{background:rgba(15,25,20,.72)}
-.reel-head{position:sticky;top:0;z-index:1;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px;background:var(--paper);border-bottom:1px solid #d5dbd0;font-size:13px}
-.reel-head [lang="zh-Hant"]{font-family:var(--zh);font-size:17px}
-.reel-close{font:inherit;font-size:22px;line-height:1;background:none;border:0;cursor:pointer;color:var(--ink);padding:4px 8px}
-.reel-body{padding:16px;min-height:200px}
-.reel-body .instagram-media{margin:0 auto!important}
-.reel-foot{padding:0 16px 16px;font-size:12px;text-align:center}
-.reel-foot a{color:var(--verm)}
-.day.todo h3,.day.todo .from{opacity:.55}
-.chip{align-self:flex-start;font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:var(--verm);color:#fff;padding:3px 8px;border-radius:999px;margin-top:6px}
-.day.target{animation:none}
-.day:target .stamp,.day.flash .stamp{background:radial-gradient(circle, rgba(207,59,43,.12), transparent 70%)}
-
-footer{max-width:1120px;margin:0 auto;padding:24px;border-top:1px solid #cdd3c8;font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-
-@media (max-width:820px){
-  .cover-inner{grid-template-columns:1fr}
-  .map-wrap{order:2}
-  #map{max-height:520px}
-  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .stat:nth-child(3){padding-left:0;border-left:0}
-  .stat:nth-child(n+3){border-top:1px solid rgba(205,176,106,.25)}
-}
-@media (max-width:420px){
-  .visa{grid-template-columns:repeat(2,minmax(0,1fr));padding:16px;gap:20px 14px}
-}
-</style>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -139,18 +26,22 @@ footer{max-width:1120px;margin:0 auto;padding:24px;border-top:1px solid #cdd3c8;
 </svg>
 
 <header class="cover">
+  <div class="lang-toggle" role="group" aria-label="語言 / Language">
+    <button type="button" data-lang="zh" lang="zh-Hant" aria-pressed="true">中文</button>
+    <button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button>
+  </div>
   <div class="cover-inner">
     <div>
-      <div class="eyebrow"><span>Pilgrim Passport</span><span>Vol. II</span><span id="year"></span></div>
-      <h1>Around Taiwan <em>on&nbsp;Foot</em></h1>
-      <p class="zh-title" lang="zh-Hant">徒步環島四十天</p>
+      <div class="eyebrow"><span id="year"></span></div>
+      <h1 data-i18n="h1">徒步環島<em>四十天</em></h1>
+      <p class="sub" id="sub" lang="en">Around Taiwan on Foot</p>
       <p class="walker" id="walker"></p>
       <div class="stats" id="stats"></div>
       <div class="follow" id="follow"></div>
     </div>
     <div class="map-wrap">
-      <svg id="map" role="img" aria-label="Map of Taiwan showing the walking route from Taichung"></svg>
-      <div class="map-legend"><span><i></i>Walked</span><span><i class="plan"></i>Still to walk</span></div>
+      <svg id="map" role="img" aria-label="台灣地圖:從台中出發的徒步路線"></svg>
+      <div class="map-legend"><span><i></i><span data-i18n="walked">已走路線</span></span></div>
     </div>
   </div>
 </header>
@@ -158,8 +49,7 @@ footer{max-width:1120px;margin:0 auto;padding:24px;border-top:1px solid #cdd3c8;
 <main>
   <section aria-labelledby="days-h">
     <div class="page-head">
-      <h2 id="days-h">The stamps <span lang="zh-Hant">紀念章</span></h2>
-      <p>One stamp for every day walked. Tap a town on the map to jump to its page.</p>
+      <h2 id="days-h" data-i18n="stampsH">紀念章</h2>
     </div>
     <div class="visa" id="days"></div>
   </section>
@@ -167,308 +57,15 @@ footer{max-width:1120px;margin:0 auto;padding:24px;border-top:1px solid #cdd3c8;
 </main>
 
 <footer>
-  <span>Taichung → around the island → Taichung</span>
-  <span>Distances are planned estimates along the road.</span>
+  <span data-i18n="foot1">台中 → 環島一圈 → 台中</span>
 </footer>
 
 <dialog class="reel-dialog" id="reel-dialog" aria-labelledby="reel-title">
-  <div class="reel-head"><span id="reel-title"></span><button class="reel-close" type="button" aria-label="Close">×</button></div>
+  <div class="reel-head"><span id="reel-title"></span><button class="reel-close" type="button" aria-label="關閉">×</button></div>
   <div class="reel-body" id="reel-body"></div>
-  <p class="reel-foot"><a id="reel-out" href="#" target="_blank" rel="noopener">Not loading? Open it on Instagram ↗</a></p>
+  <p class="reel-foot"><a id="reel-out" href="#" target="_blank" rel="noopener" data-i18n="reelOut">載入不了?到 Instagram 觀看 ↗</a></p>
 </dialog>
 
-<script>
-/* =====================================================================
-   EDIT HERE. Mark a day done with done:true, paste reel links, add notes.
-   km is optional: if left out it is estimated from the map.
-   ===================================================================== */
-const CONFIG = {
-  walker: "",                 // e.g. "Walked by ___"
-  year: 2026,
-  startDate: "",              // "2026-10-20" shows dates on each stamp
-  instagram: "",              // profile URL
-  facebook: "",               // profile URL
-  roadFactor: 1.25,           // straight-line distance → road distance
-  start: { zh:"台中", en:"Taichung", lon:120.68, lat:24.15 },
-};
-
-// Days 1–8 are marked done as an example. Replace with the real progress.
-const DAYS = [
-  { zh:"彰化", en:"Changhua",  lon:120.54, lat:24.08, done:true, reel:"https://www.instagram.com/reel/DfPTXZcir8O/" },
-  { zh:"員林", en:"Yuanlin",   lon:120.58, lat:23.96, done:true },
-  { zh:"西螺", en:"Xiluo",     lon:120.46, lat:23.80, done:true },
-  { zh:"斗南", en:"Dounan",    lon:120.48, lat:23.68, done:true },
-  { zh:"嘉義", en:"Chiayi",    lon:120.45, lat:23.48, done:true },
-  { zh:"新營", en:"Xinying",   lon:120.31, lat:23.31, done:true },
-  { zh:"善化", en:"Shanhua",   lon:120.30, lat:23.13, done:true },
-  { zh:"台南", en:"Tainan",    lon:120.20, lat:22.99, done:true },
-  { zh:"岡山", en:"Gangshan",  lon:120.30, lat:22.80 },
-  { zh:"高雄", en:"Kaohsiung", lon:120.30, lat:22.63 },
-  { zh:"東港", en:"Donggang",  lon:120.45, lat:22.47 },
-  { zh:"枋寮", en:"Fangliao",  lon:120.59, lat:22.37 },
-  { zh:"車城", en:"Checheng",  lon:120.71, lat:22.07 },
-  { zh:"墾丁", en:"Kenting",   lon:120.80, lat:21.95 },
-  { zh:"滿州", en:"Manzhou",   lon:120.84, lat:22.02 },
-  { zh:"達仁", en:"Daren",     lon:120.88, lat:22.29 },
-  { zh:"太麻里", en:"Taimali", lon:121.00, lat:22.61 },
-  { zh:"台東", en:"Taitung",   lon:121.15, lat:22.75 },
-  { zh:"都蘭", en:"Dulan",     lon:121.22, lat:22.88 },
-  { zh:"東河", en:"Donghe",    lon:121.30, lat:22.97 },
-  { zh:"成功", en:"Chenggong", lon:121.37, lat:23.10 },
-  { zh:"長濱", en:"Changbin",  lon:121.45, lat:23.32 },
-  { zh:"靜浦", en:"Jingpu",    lon:121.50, lat:23.47 },
-  { zh:"豐濱", en:"Fengbin",   lon:121.52, lat:23.60 },
-  { zh:"鹽寮", en:"Yanliao",   lon:121.60, lat:23.90 },
-  { zh:"花蓮", en:"Hualien",   lon:121.60, lat:23.98 },
-  { zh:"新城", en:"Xincheng",  lon:121.64, lat:24.13 },
-  { zh:"和平", en:"Heping",    lon:121.75, lat:24.30 },
-  { zh:"南澳", en:"Nanao",     lon:121.80, lat:24.46 },
-  { zh:"蘇澳", en:"Su'ao",     lon:121.85, lat:24.60 },
-  { zh:"宜蘭", en:"Yilan",     lon:121.75, lat:24.75 },
-  { zh:"頭城", en:"Toucheng",  lon:121.82, lat:24.86 },
-  { zh:"福隆", en:"Fulong",    lon:121.94, lat:25.02 },
-  { zh:"基隆", en:"Keelung",   lon:121.74, lat:25.13 },
-  { zh:"台北", en:"Taipei",    lon:121.52, lat:25.04 },
-  { zh:"桃園", en:"Taoyuan",   lon:121.30, lat:24.99 },
-  { zh:"楊梅", en:"Yangmei",   lon:121.15, lat:24.91 },
-  { zh:"新竹", en:"Hsinchu",   lon:120.97, lat:24.80 },
-  { zh:"苗栗", en:"Miaoli",    lon:120.82, lat:24.56 },
-  { zh:"台中", en:"Taichung",  lon:120.68, lat:24.15, finish:true },
-  // optional per day: km: 24, note: "...", reel: "https://www.instagram.com/reel/..." (or /p/...), fb: "https://facebook.com/..."
-];
-
-/* ===================================================================== */
-
-const INKS = ["var(--verm)","var(--indigo)","var(--teal)","var(--plum)"];
-const $ = s => document.querySelector(s);
-const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const pad = n => String(n).padStart(2,"0");
-const rand = seed => { const x = Math.sin(seed*999.13)*43758.5453; return x - Math.floor(x); };
-
-function haversine(a,b){
-  const R=6371, r=Math.PI/180;
-  const dLat=(b.lat-a.lat)*r, dLon=(b.lon-a.lon)*r;
-  const h=Math.sin(dLat/2)**2+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dLon/2)**2;
-  return 2*R*Math.asin(Math.sqrt(h));
-}
-
-// ---- derive per-day numbers ----
-let cum = 0;
-const days = DAYS.map((d,i) => {
-  const prev = i ? DAYS[i-1] : CONFIG.start;
-  const km = d.km ?? (d.rest ? 0 : Math.round(haversine(prev,d)*CONFIG.roadFactor));
-  cum += km;
-  return { ...d, n:i+1, from:prev, km, cum };
-});
-const total = cum;
-const lastDone = days.filter(d => d.done).at(-1);
-const walked = lastDone ? lastDone.cum : 0;
-const doneCount = days.filter(d => d.done).length;
-const nextDay = days.find(d => !d.done);
-
-function dateFor(n){
-  if(!CONFIG.startDate) return "";
-  const t = new Date(CONFIG.startDate + "T00:00:00");
-  if(isNaN(t)) return "";
-  t.setDate(t.getDate()+n-1);
-  return t.toLocaleDateString("en-GB",{day:"numeric",month:"short"});
-}
-
-// ---- cover ----
-$("#year").textContent = CONFIG.year;
-if(CONFIG.walker) $("#walker").textContent = CONFIG.walker; else $("#walker").remove();
-$("#stats").innerHTML = [
-  [`${lastDone ? lastDone.n : 0}<small style="font-size:.45em;opacity:.7"> / ${days.length}</small>`, "Day"],
-  [walked.toLocaleString(), "km walked"],
-  [(total-walked).toLocaleString(), "km to go"],
-  [doneCount, "stamps"],
-].map(([v,l]) => `<div class="stat"><b>${v}</b><small>${l}</small></div>`).join("");
-$("#follow").innerHTML =
-  (CONFIG.instagram ? `<a class="btn" href="${esc(CONFIG.instagram)}" target="_blank" rel="noopener">Instagram reels ↗</a>` : "") +
-  (CONFIG.facebook ? `<a class="btn" href="${esc(CONFIG.facebook)}" target="_blank" rel="noopener">Facebook ↗</a>` : "");
-if(!CONFIG.instagram && !CONFIG.facebook) $("#follow").remove();
-
-// ---- map ----
-const OUTLINE = [[121.54,25.30],[121.74,25.15],[121.92,25.12],[121.82,24.86],[121.86,24.59],[121.80,24.45],[121.68,24.20],[121.62,23.98],[121.52,23.60],[121.38,23.10],[121.15,22.76],[120.92,22.36],[120.88,22.05],[120.85,21.90],[120.73,21.93],[120.70,22.03],[120.59,22.37],[120.45,22.46],[120.27,22.60],[120.17,22.90],[120.13,23.00],[120.06,23.15],[120.13,23.38],[120.14,23.58],[120.24,23.78],[120.38,24.08],[120.51,24.28],[120.57,24.40],[120.67,24.50],[120.75,24.62],[120.90,24.78],[120.93,24.86],[121.08,25.04],[121.27,25.12],[121.40,25.18],[121.50,25.28]];
-const S = 210, LON0 = 119.98, LAT0 = 25.40, KX = Math.cos(23.6*Math.PI/180);
-const P = (lon,lat) => [(lon-LON0)*KX*S, (LAT0-lat)*S];
-const W = (122.05-LON0)*KX*S, H = (LAT0-21.80)*S;
-
-function smoothClosed(pts){
-  const n = pts.length; let d = `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
-  for(let i=0;i<n;i++){
-    const p0=pts[(i-1+n)%n], p1=pts[i], p2=pts[(i+1)%n], p3=pts[(i+2)%n];
-    const c1=[p1[0]+(p2[0]-p0[0])/6, p1[1]+(p2[1]-p0[1])/6];
-    const c2=[p2[0]-(p3[0]-p1[0])/6, p2[1]-(p3[1]-p1[1])/6];
-    d += `C${c1.map(v=>v.toFixed(1))} ${c2.map(v=>v.toFixed(1))} ${p2.map(v=>v.toFixed(1))}`;
-  }
-  return d + "Z";
-}
-function drawMap(){
-  const svg = $("#map");
-  svg.setAttribute("viewBox", `-20 -10 ${W+40} ${H+20}`);
-  const outline = smoothClosed(OUTLINE.map(p => P(...p)));
-  const ridge = [[121.55,24.95],[121.35,24.55],[121.15,24.05],[121.00,23.50],[120.85,22.95],[120.80,22.40]].map(p=>P(...p));
-  const route = [CONFIG.start, ...days].map(d => P(d.lon,d.lat));
-  const doneIdx = lastDone ? lastDone.n : 0;
-  const line = pts => pts.map((p,i)=>(i?"L":"M")+p[0].toFixed(1)+","+p[1].toFixed(1)).join("");
-  const here = P((lastDone||CONFIG.start).lon,(lastDone||CONFIG.start).lat);
-  const st = P(CONFIG.start.lon, CONFIG.start.lat);
-
-  let g = "";
-  // graticule
-  for(let lat=22;lat<=25;lat++){ const y=P(120,lat)[1]; g+=`<line x1="-20" x2="${W+20}" y1="${y}" y2="${y}" stroke="rgba(205,176,106,.12)"/><text x="${W+14}" y="${y-4}" font-size="9" fill="rgba(205,176,106,.5)" text-anchor="end" font-family="IBM Plex Mono">${lat}°N</text>`; }
-  for(let lon=120.5;lon<=121.5;lon+=.5){ const x=P(lon,24)[0]; g+=`<line y1="-10" y2="${H+10}" x1="${x}" x2="${x}" stroke="rgba(205,176,106,.08)"/>`; }
-  g += `<path d="${outline}" fill="rgba(205,176,106,.07)" stroke="var(--gold)" stroke-width="1.6"/>`;
-  g += `<path d="${line(ridge)}" fill="none" stroke="rgba(205,176,106,.35)" stroke-width="1" stroke-dasharray="1 5" stroke-linecap="round"/>`;
-  const rm = P(121.12,23.75);
-  g += `<text x="${rm[0]}" y="${rm[1]}" font-size="11" fill="rgba(205,176,106,.55)" font-family="LXGW WenKai TC" transform="rotate(-62 ${rm[0]} ${rm[1]})" letter-spacing="6">中央山脈</text>`;
-  g += `<path d="${line(route.slice(doneIdx))}" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-dasharray="4 5" opacity=".8"/>`;
-  if(doneIdx) g += `<path d="${line(route.slice(0,doneIdx+1))}" fill="none" stroke="var(--verm)" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>`;
-  days.forEach(d => {
-    const [x,y] = P(d.lon,d.lat);
-    g += `<g class="dot" data-day="${d.n}" tabindex="0" role="link" aria-label="Day ${d.n}: ${esc(d.en)}"><title>Day ${d.n} · ${esc(d.zh)} ${esc(d.en)}</title><circle cx="${x}" cy="${y}" r="9" fill="transparent"/><circle cx="${x}" cy="${y}" r="${d.done?3.4:2.6}" fill="${d.done?"var(--verm)":"var(--cover)"}" stroke="${d.done?"#f1e3b8":"var(--gold)"}" stroke-width="1.2"/></g>`;
-  });
-  // start star
-  g += `<g transform="translate(${st[0]},${st[1]})"><path d="M0,-8 L2.2,-2.4 8,-2.4 3.4,1.2 5,7 0,3.6 -5,7 -3.4,1.2 -8,-2.4 -2.2,-2.4Z" fill="#f1e3b8"/></g>`;
-  g += `<text x="${st[0]-14}" y="${st[1]+4}" text-anchor="end" font-size="13" fill="#f1e3b8" font-family="LXGW WenKai TC">台中 起點</text>`;
-  if(lastDone && !lastDone.finish){
-    g += `<circle class="pulse" cx="${here[0]}" cy="${here[1]}" r="7" fill="none" stroke="var(--verm)" stroke-width="2"/>`;
-    g += `<circle cx="${here[0]}" cy="${here[1]}" r="6" fill="var(--verm)" stroke="#f1e3b8" stroke-width="2"/>`;
-    const left = here[0] > W*0.6;
-    g += `<g font-family="IBM Plex Mono"><text x="${here[0]+(left?-14:14)}" y="${here[1]-4}" text-anchor="${left?"end":"start"}" font-size="10" fill="var(--gold)" letter-spacing="1.5">DAY ${lastDone.n} · NOW</text><text x="${here[0]+(left?-14:14)}" y="${here[1]+13}" text-anchor="${left?"end":"start"}" font-size="15" fill="#f1e3b8" font-family="LXGW WenKai TC">${esc(lastDone.zh)} ${esc(lastDone.en)}</text></g>`;
-  }
-  svg.innerHTML = g;
-  svg.querySelectorAll(".dot").forEach(el => {
-    const go = () => {
-      const card = document.getElementById("day-"+el.dataset.day);
-      card.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"center"});
-      card.classList.add("flash"); setTimeout(()=>card.classList.remove("flash"),1600);
-    };
-    el.addEventListener("click", go);
-    el.addEventListener("keydown", e => { if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); }});
-  });
-}
-
-// ---- stamps ----
-function stamp(d, opts={}){
-  const id = (opts.prefix||"s") + d.n;
-  const ink = opts.ink || INKS[(d.n-1)%INKS.length];
-  const shape = opts.shape ?? (d.n-1)%5;
-  const rot = ((rand(d.n)*2-1)*9).toFixed(1);
-  const zh = esc(d.zh), en = esc(d.en).toUpperCase();
-  const zhSize = d.zh && d.zh.length>2 ? 22 : 28;
-  const dayTxt = opts.top || `DAY ${pad(d.n)}`;
-  const bottom = opts.bottom ?? (d.finish ? "FINISH · 完走" : `${d.km} KM`);
-  const T = (x,y,s,txt,extra="") => `<text x="${x}" y="${y}" font-size="${s}" text-anchor="middle" fill="${ink}" ${extra}>${txt}</text>`;
-  let body = "";
-  const mono = `font-family="IBM Plex Mono" letter-spacing="1.2"`;
-  const kai = `font-family="LXGW WenKai TC" font-weight="700"`;
-  if(shape===0){
-    body = `<circle cx="60" cy="60" r="55" fill="none" stroke="${ink}" stroke-width="3.2"/><circle cx="60" cy="60" r="41" fill="none" stroke="${ink}" stroke-width="1.2"/>
-      <path id="${id}t" d="M14,60 A46,46 0 0 1 106,60" fill="none"/><path id="${id}b" d="M10,60 A50,50 0 0 0 110,60" fill="none"/>
-      <text font-size="9" fill="${ink}" ${mono}><textPath href="#${id}t" startOffset="50%" text-anchor="middle">${en}</textPath></text>
-      <text font-size="9" fill="${ink}" ${mono}><textPath href="#${id}b" startOffset="50%" text-anchor="middle">${bottom}</textPath></text>
-      ${T(60,58,zhSize,zh,kai)}${T(60,76,9,dayTxt,mono)}`;
-  } else if(shape===1){
-    body = `<rect x="8" y="18" width="104" height="84" rx="12" fill="none" stroke="${ink}" stroke-width="3.2"/><rect x="15" y="25" width="90" height="70" rx="7" fill="none" stroke="${ink}" stroke-width="1"/>
-      ${T(60,40,8.5,en,mono)}${T(60,68,zhSize,zh,kai)}<line x1="28" x2="92" y1="76" y2="76" stroke="${ink}" stroke-width="1"/>${T(60,88,8.5,`${dayTxt} · ${bottom}`,mono)}`;
-  } else if(shape===2){
-    const o = [[38,6],[82,6],[114,38],[114,82],[82,114],[38,114],[6,82],[6,38]].map(p=>p.join(",")).join(" ");
-    body = `<polygon points="${o}" fill="none" stroke="${ink}" stroke-width="3.2" stroke-linejoin="round"/>
-      ${T(60,30,9,dayTxt,mono)}<line x1="30" x2="90" y1="36" y2="36" stroke="${ink}"/>${T(60,68,zhSize+2,zh,kai)}${T(60,86,8.5,en,mono)}<line x1="30" x2="90" y1="92" y2="92" stroke="${ink}"/>${T(60,104,8.5,bottom,mono)}`;
-  } else if(shape===3){
-    body = `<ellipse cx="60" cy="60" rx="56" ry="42" fill="none" stroke="${ink}" stroke-width="3.2"/><ellipse cx="60" cy="60" rx="49" ry="35" fill="none" stroke="${ink}" stroke-width="1" stroke-dasharray="2 3"/>
-      ${T(60,42,8.5,dayTxt,mono)}${T(60,67,zhSize,zh,kai)}${T(60,84,8.5,`${en}`,mono)}`;
-  } else {
-    const t = "M20,16 H100 A8,8 0 0 0 108,24 V96 A8,8 0 0 0 100,104 H20 A8,8 0 0 0 12,96 V24 A8,8 0 0 0 20,16Z";
-    body = `<path d="${t}" fill="none" stroke="${ink}" stroke-width="3.2"/>
-      <rect x="12" y="16" width="96" height="20" fill="${ink}" opacity=".9"/><text x="60" y="30" font-size="9" text-anchor="middle" fill="#f4f5ef" ${mono}>${dayTxt}</text>
-      ${T(60,68,zhSize,zh,kai)}${T(60,84,8.5,en,mono)}${T(60,97,8.5,bottom,mono)}`;
-  }
-  return `<svg viewBox="0 0 120 120" aria-hidden="true"><g transform="rotate(${rot} 60 60)" filter="url(#ink)" opacity=".92">${body}</g></svg>`;
-}
-function emptySlot(d){
-  return `<svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="50" fill="none" stroke="#b7c0b4" stroke-width="1.4" stroke-dasharray="3 5"/>
-    <text x="60" y="54" text-anchor="middle" font-size="9" fill="#97a29a" font-family="IBM Plex Mono" letter-spacing="1.5">DAY ${pad(d.n)}</text>
-    <text x="60" y="78" text-anchor="middle" font-size="20" fill="#b7c0b4" font-family="LXGW WenKai TC">${esc(d.zh)}</text></svg>`;
-}
-
-function renderDays(){
-  $("#days").innerHTML = days.map(d => {
-    const date = dateFor(d.n);
-    const links = d.done
-      ? (d.reel || d.fb
-          ? `<div class="links">${d.reel?(igPermalink(d.reel)?`<button type="button" class="play-reel" data-day="${d.n}">▶ Watch reel</button>`:`<a href="${esc(d.reel)}" target="_blank" rel="noopener">▶ Reel ↗</a>`):""}${d.fb?`<a href="${esc(d.fb)}" target="_blank" rel="noopener">Facebook ↗</a>`:""}</div>`
-          : `<div class="links"><span class="soon">Reel coming soon</span></div>`)
-      : "";
-    const chip = nextDay && d.n===nextDay.n ? `<span class="chip">Walking next</span>` : "";
-    return `<article class="day ${d.done?"done":"todo"}" id="day-${d.n}">
-      <div class="stamp">${d.done ? stamp(d) : emptySlot(d)}</div>
-      <div class="day-meta"><span>Day ${pad(d.n)}${date?` · ${date}`:""}</span><span>${d.km} km</span></div>
-      <h3><span lang="zh-Hant">${esc(d.zh)}</span> ${esc(d.en)}</h3>
-      <p class="from">from <span lang="zh-Hant">${esc(d.from.zh)}</span> ${esc(d.from.en)}</p>
-      ${d.note?`<p class="note">${esc(d.note)}</p>`:""}
-      ${links}${chip}
-    </article>`;
-  }).join("");
-}
-
-/* ---------- Instagram reel player ----------
-   Uses Instagram's official embed script, loaded only the first time someone opens a reel. */
-function igPermalink(url){
-  try{
-    const u = new URL(url);
-    if(!/(^|\.)instagram\.com$/.test(u.hostname)) return null;
-    const m = u.pathname.match(/^\/(?:[\w.]+\/)?(p|reel|reels|tv)\/([\w-]+)/);
-    if(!m) return null;
-    return `https://www.instagram.com/${m[1]==="reels"?"reel":m[1]}/${m[2]}/`;
-  }catch{ return null; }
-}
-let igScript;
-function loadInstagram(){
-  if(igScript) return igScript;
-  igScript = new Promise((resolve, reject) => {
-    const s = document.createElement("script");
-    s.src = "https://www.instagram.com/embed.js";
-    s.async = true;
-    s.onload = resolve;
-    s.onerror = () => { igScript = null; reject(); };
-    document.body.appendChild(s);
-  });
-  return igScript;
-}
-const reelDialog = $("#reel-dialog");
-let reelTicket = 0;
-function openReel(d){
-  const link = igPermalink(d.reel);
-  $("#reel-title").innerHTML = `Day ${pad(d.n)} · <span lang="zh-Hant">${esc(d.zh)}</span> ${esc(d.en)}`;
-  $("#reel-out").href = link;
-  $("#reel-body").innerHTML = `<blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="${esc(link)}" data-instgrm-version="14"
-    style="background:#fff;border:0;border-radius:6px;max-width:540px;min-width:280px;width:100%;padding:0;margin:0 auto">
-    <a href="${esc(link)}" target="_blank" rel="noopener" style="display:block;padding:40px 16px;text-align:center;color:var(--muted)">Loading the reel…</a></blockquote>`;
-  reelDialog.showModal();
-  const ticket = ++reelTicket;
-  const failed = () => {
-    if(ticket !== reelTicket || !reelDialog.open) return; // a different reel is open now
-    $("#reel-body").innerHTML = `<p style="text-align:center;color:var(--muted);margin:60px 0">Instagram didn't load the player here.<br>Tap the link below to watch it on Instagram.</p>`;
-  };
-  loadInstagram().then(() => {
-    window.instgrm && window.instgrm.Embeds.process();
-    // Instagram's player reports its height once the reel loads; if it never does, show the fallback.
-    setTimeout(() => { const f = $("#reel-body iframe"); if(!f || f.offsetHeight < 50) failed(); }, 10000);
-  }).catch(failed);
-}
-function closeReel(){ reelDialog.close(); }
-reelDialog.addEventListener("close", () => { $("#reel-body").innerHTML = ""; }); // stops playback
-reelDialog.addEventListener("click", e => { if(e.target === reelDialog) closeReel(); }); // tap outside to close
-$(".reel-close").addEventListener("click", closeReel);
-$("#days").addEventListener("click", e => {
-  const b = e.target.closest(".play-reel");
-  if(b) openReel(days.find(d => d.n === +b.dataset.day));
-});
-
-drawMap(); renderDays();
-</script>
+<script src="script.js"></script>
 </body>
 </html>
